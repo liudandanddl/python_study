@@ -21,14 +21,20 @@ if __name__ == "__main__":
     # s[1] = 1
     # print(y, s is y)  # ([1, 1, 3], True)
     # s1 = [1, 2, 3]
-    # y1 = s1[:]  # 利用切片赋值，y和s是不同对象
+    # y1 = s1[:]  # 利用切片赋值，y和s是不同对象，浅拷贝
     # s1[1] = 1
     # print(y1, s1 is y1)  # ([1, 2, 3], False)
 
-    dict1 = {'k1':'v1', 'k2':'v2'}
-    for k, v in dict1.items():  # items将字典的key和value以元组形式展示
-        print(k + v)
-    print(dict1.items())
-    list1 = [1,2,3]
-    for d, l in zip(dict1.items(), list1):  # 序列的并行迭代
-        print(d, l)
+    # dict1 = {'k1':'v1', 'k2':'v2'}
+    # for k, v in dict1.items():  # items将字典的key和value以元组形式展示
+    #     print(k + v)
+    # print(dict1.items())
+    # list1 = [1,2,3]
+    # for d, l in zip(dict1.items(), list1):  # 序列的并行迭代，处理不等长的序列的时候最短的用完就会停止
+    #     print(d, l)
+
+    list2 = [3,4,2,6,1,9]
+    l_s = sorted(list2)  # 返回列表
+    l_r = reversed(list2)  # 返回可迭代对象
+    print(l_s, type(l_s))
+    print(list(l_r), type(l_r))
