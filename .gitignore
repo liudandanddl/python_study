@@ -1,0 +1,8 @@
+*.pyc
+*.log
+*log*
+*.swp
+codebak
+case/*/__pycache__/
+**/.cache
+.idea
