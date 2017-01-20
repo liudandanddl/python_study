@@ -33,8 +33,16 @@ if __name__ == "__main__":
     # for d, l in zip(dict1.items(), list1):  # 序列的并行迭代，处理不等长的序列的时候最短的用完就会停止
     #     print(d, l)
 
-    list2 = [3,4,2,6,1,9]
-    l_s = sorted(list2)  # 返回列表
-    l_r = reversed(list2)  # 返回可迭代对象
-    print(l_s, type(l_s))
-    print(list(l_r), type(l_r))
+    # list2 = [3,4,2,6,1,9]
+    # l_s = sorted(list2)  # 返回列表
+    # l_r = reversed(list2)  # 返回可迭代对象
+    # print(l_s, type(l_s))
+    # print(list(l_r), type(l_r))
+
+    i = 3
+    def change(a):
+        # 不能再内部改变全局变量的值
+        i + a
+        print(i+a)
+    print(i)
+    change(2)
