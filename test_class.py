@@ -5,7 +5,7 @@ __author__ = 'ldd'
 __metaclass__ = type  # python3.0以上新式类的语法，在模块或者脚本开始的地方放置该赋值语句。也可以继承新式类(比如object)
 
 
-class Demol:
+class Demol():
 
     members = 0
     self_mem = 0
@@ -14,6 +14,7 @@ class Demol:
         # 下面二者类似于函数内的局部和全局变量
         Demol.members += 1  # 类作用域内的变量被所有实例访问
         self.self_mem += 1  # 被一个实例访问
+
 
 if __name__ == "__main__":
     d1 = Demol()
