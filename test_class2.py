@@ -37,7 +37,7 @@ class Rectangle(object):
     def getSize(self):
         return self.width, self.height
     # property函数只能新式类用，property函数创建了一个属性
-    size = property(getSize, setSize)  # property取代访问器函数
+    size = property(fget=getSize, fset=setSize)  # property取代访问器函数
 
 
 if __name__ == "__main__":
