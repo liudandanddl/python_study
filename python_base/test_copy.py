@@ -20,3 +20,12 @@ if __name__ == "__main__":
         print("lista.", i, "=", id(i))  # 140412175014024，140412175014000，140412175013976
     for i in listb:
         print("listb.", i, "=", id(i))  # 140412175014048，140412175014000
+
+    listc = lista  # id和值完全一样
+    print(id(listc), id(lista), listc, lista)
+    listc[0] = 9
+    print(id(listc), id(lista), listc, lista)
+    for i in lista:  # 元素的id值也相同，改变互相影响
+        print("lista.", i, "=", id(i))  # 140412175014024，140412175014000，140412175013976
+    for i in listc:
+        print("listc.", i, "=", id(i))
