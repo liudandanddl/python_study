@@ -12,7 +12,7 @@ BUFSIZ = 1024
 ADDR = (HOST, PORT)
 
 
-# TCP是需要创建链接的，因此必须先启动服务的，再启动客户端
+# TCP是需要创建链接的，因此必须先启动服务的，再启动客户端。 TCP流
 if __name__ == "__main__":
     tcpSerSock = socket(AF_INET, SOCK_STREAM)  # 创建服务器套接字, 用的是IPV4
     tcpSerSock.bind(ADDR)  # 套接字与地址绑定

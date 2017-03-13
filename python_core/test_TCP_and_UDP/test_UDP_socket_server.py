@@ -12,7 +12,7 @@ BUFSIZ = 1024
 ADDR = (HOST, PORT)
 
 
-# UDP是无链接的，因此先启动客户端还是服务端都可以。不需要监听。
+# UDP是无链接的，因此先启动客户端还是服务端都可以。不需要监听。UDP数据报
 if __name__ == "__main__":
     udpSerSock = socket(AF_INET, SOCK_DGRAM)  # 创建服务器套接字, 用的是IPV4
     udpSerSock.bind(ADDR)  # 套接字与地址绑定
