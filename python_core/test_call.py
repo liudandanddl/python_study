@@ -9,6 +9,7 @@ __author__ = 'ldd'
 
 def get_gender(gender):
     print("gender is ", gender)
+    return 1
 
 
 class Person(object):
@@ -20,7 +21,11 @@ class Person(object):
     def __call__(self, friend):
         print('person1 name is ', self.name)
         print('2 name is', friend)
-        self.func(self.gender)
+        self.res = self.func(self.gender)
+
+    # get func的返回结果
+    def get_res(self):
+        print(self.res)
 
 if __name__ == "__main__":
     f = abs  # 求绝对值函数
@@ -32,3 +37,5 @@ if __name__ == "__main__":
     # ('2 name is', 'Time')
     # ('gender is ', 'male')
     p('Time')  # 这个类直接被调用
+    # 1
+    p.get_res()
