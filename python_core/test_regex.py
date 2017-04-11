@@ -72,14 +72,15 @@ if __name__ == "__main__":
     print(sp1, type(sp1))  # (['str1', 'str2', 'str3'], <type 'list'>)
 
     print("------------------re扩展符号--标志表------------------------------------")
-    '''
-    I = IGNORECASE 使匹配对大小写不敏感
-    L = LOCALE 做本地化识别(local-aware)匹配
-    U = UNICODE = sre_compile.SRE_FLAG_UNICODE # assume unicode locale
-    M = MULTILINE 多行匹配，影响 匹配字符串起始部分^ 和 匹配字符串终止部分$
-    S = DOTALL 使 . 匹配包括换行在内的所有字符
-    X = VERBOSE 能够使用REs的verbose状态，使之被组织得更清晰易懂
-    '''
+    ('\n'
+     '    I = IGNORECASE 使匹配对大小写不敏感\n'
+     '    L = LOCALE 做本地化识别(local-aware)匹配\n'
+     '    U = UNICODE = sre_compile.SRE_FLAG_UNICODE # assume unicode locale\n'
+     '    M = MULTILINE 多行匹配，影响 匹配字符串起始部分^ 和 匹配字符串终止部分$\n'
+     '    S = DOTALL 使 . 匹配包括换行在内的所有字符\n'
+     '    X = VERBOSE 能够使用REs的verbose状态，使之被组织得更清晰易懂\n'
+     '    '
+     )
     print(re.findall(r'(?i)yes', 'yes?Yes.YES,yEs'))  # ['yes', 'Yes', 'YES', 'yEs']
     strtemp = '''This line is the first\nanother line\nthat line\nit's the best\nthat a apple'''
     print(strtemp)

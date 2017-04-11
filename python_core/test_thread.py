@@ -6,14 +6,14 @@ from time import sleep
 import time
 
 __author__ = 'ldd'
-'''
-Python的多线程适合IO密集型，不适合计算密集型应用
-创建线程常用的3种方法：
-1.创建Thread的实例，传给它一个函数
-2.创建Thread的实例，并传给它一个可调用的类的实例
-3.派生Thread的子类，并创子类的实例
-当需要一个封建符合面向对象的接口时趋向选择3，否则趋向选择1
-'''
+var = ('\n'
+       'Python的多线程适合IO密集型，不适合计算密集型应用\n'
+       '创建线程常用的3种方法：\n'
+       '1.创建Thread的实例，传给它一个函数\n'
+       '2.创建Thread的实例，并传给它一个可调用的类的实例\n'
+       '3.派生Thread的子类，并创子类的实例\n'
+       '当需要一个封建符合面向对象的接口时趋向选择3，否则趋向选择1\n'
+       )
 
 loops = [4, 2]
 
@@ -105,6 +105,6 @@ def _atexit():
 # register(_atexit)
 
 if __name__ == "__main__":
-    # main1()
+    main1()
     # main2()
-    main3()
+    # main3()
