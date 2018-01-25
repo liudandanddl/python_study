@@ -28,7 +28,7 @@ if __name__ == "__main__":
     foo(1)
     print("foo()2: ", foo(1))
     func = lambda x, y, z: x+y+z
-    print("func(): ", func(1, 2, 3))
+    print("func(): ", func(1, 2, 3))  # ('func(): ', 6)
     print("-------------------------------")
 
     a = action(2)
