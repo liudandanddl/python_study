@@ -84,7 +84,7 @@ def isValid(s):
 
 def maxSubArray(nums):
     """
-    求数组的最大子串和。
+    求数组的最大子串和。常规办法：for循环两边，第一遍遍历子串头，在内部遍历子串尾，算出所有子串和。
     eg:[59, 26, -53, 58, 97, -93, -23, 84] res=187, [59, 26, -53, 58, 97]
     [-2,1,-3,4,-1,2,1,-5,4]  res=6, [4, -1, 2, 1]
     :type nums: List[int]
@@ -110,6 +110,30 @@ def maxSubArray(nums):
             for temp in res_end:
                 res_far.append(temp)
     return max_far, res_far
+
+
+def mySqrt(x):
+    '''
+    用二分法求一个数的最近平方根
+    对于一个非负数n，它的平方根不会大于n/2+1
+    eg：4 res=2 ;  8 res=2 ; 9 res=3 ; 15 res=3 ; 16 res=4
+    '''
+    left = 1
+    right = x/2+1
+    if x in [0, 1]:
+        return x
+    while left < right-1:  # 比如输入35， 最后一次left=5 right=7 mid=6 经过while更改值之后left=6 right=7,不需要在while了，res肯定6或7
+        mid = (left + right)/2
+        print(left, right, mid)
+        if mid == x / mid:
+            return int(mid)
+        if mid > x / mid:
+            right = mid
+        else:
+            left = mid
+    res = right if right*right<x else right-1
+    return res
+
 
 if __name__ == "__main__":
     # [4,-1,2,1] has the largest sum = 6.
