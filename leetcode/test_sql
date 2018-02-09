@@ -1,0 +1,14 @@
+
+SELECT FirstName,LastName,City,State from Person, Address WHERE Address.PersonId = Person.PersonId;
+SELECT FirstName,LastName,City,State from Person left join Address on Person.PersonId = .PersonId;
+
+select Salary as SecondHighestSalary from Employee
+WHERE Salary < (select MAX(Salary) from Employee) ORDER by Salary DESC limit 1;
+
+SELECT e1.Name as Employee from Employee as e1,  Employee as e2
+where e1.ManagerId = e2.id and e1.Salary > e2.Salary
+
+select Email from Person group by Email having count(*)>1
+
+SELECT Name as Customers from Customers
+where id not in (select Customers.id from Customers, Orders where Orders.CustomerId = Customers.id)
