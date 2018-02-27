@@ -89,6 +89,29 @@ def mergeTwoLists(l1, l2):
     return res.next  # 第一个元素是自己加进去的0
 
 
+def removeElements(head, val):
+    """
+    从列表中删除给定的元素
+    :type head: ListNode
+    :type val: int
+    :rtype: ListNode
+    Example
+    Given: 1 --> 2 --> 6 --> 3 --> 4 --> 5 --> 6, val = 6
+    Return: 1 --> 2 --> 3 --> 4 --> 5
+    """
+    p = head
+    while p:
+        if p.next and p.next.val == val:
+            p.next = p.next.next
+        else:
+            p = p.next
+    q = head
+    q1 = head
+    if q and q.val == val:  # 判断列表的头元素
+        q = q1.next
+    return q
+
+
 if __name__ == "__main__":
     # head = Node(1)
     # l = [1, 1, 2, 3, 3]
@@ -96,11 +119,17 @@ if __name__ == "__main__":
     #     head = append_node(head, temp)
     # head = deleteDuplicates(head)
     # print_node(head)
-    head1 = Node(1)
-    head2 = Node(1)
-    for temp in [2, 4]:
+
+    # head1 = Node(1)
+    # head2 = Node(1)
+    # for temp in [2, 4]:
+    #     head1 = append_node(head1, temp)
+    # for temp in [3, 4,5]:
+    #     head2 = append_node(head2, temp)
+    # head = mergeTwoLists(head1, head2)
+    # print_node(head)
+    head1 = Node(6)
+    for temp in [2,6,3,4,5,6]:
         head1 = append_node(head1, temp)
-    for temp in [3, 4,5]:
-        head2 = append_node(head2, temp)
-    head = mergeTwoLists(head1, head2)
+    head = removeElements(head1, 6)
     print_node(head)

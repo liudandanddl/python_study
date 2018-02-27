@@ -12,3 +12,7 @@ select Email from Person group by Email having count(*)>1
 
 SELECT Name as Customers from Customers
 where id not in (select Customers.id from Customers, Orders where Orders.CustomerId = Customers.id)
+
+delete from Person where Id not in(select Id from (select min(Id) as Id from Person group by Email) temp)
+
+select w1.Id as Id from Weather as w1, Weather as w2 where w1.Temperature> w2.Temperature and TO_DAYS(w1.Date) - TO_DAYS(w2.Date) = 1
