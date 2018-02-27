@@ -60,6 +60,7 @@ def deleteDuplicates(head):
     return head
 
 
+
 def mergeTwoLists(l1, l2):
     """
     :type l1: ListNode
