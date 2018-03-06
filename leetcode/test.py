@@ -135,11 +135,44 @@ def mySqrt(x):
     return res
 
 
+def countPrimes(n):
+    """
+    计算比n小的素数的个数
+    :type n: int
+    :rtype: int
+    厄拉多塞筛法：先将 2~n 的各个数放入表中，然后在2的上面画一个圆圈，然后划去2的其他倍数；
+    第一个既未画圈又没有被划去的数是3，将它画圈，再划去3的其他倍数；
+    现在既未画圈又没有被划去的第一个数 是5，将它画圈，并划去5的其他倍数……
+    依次类推，一直到所有小于或等于 n 的各数都画了圈或划去为止。这时，表中画了圈的以及未划去的那些数正好就是小于 n 的素数。
+    当你要画圈的素数的平方大于 n 时，那么后面没有划去的数都是素数，就不用继续判了
+    """
+    # if n < 2:
+    #     return 0
+    # ditA = dict.fromkeys(range(2, n, 1), True)  # 默认都是素数
+    # for key in range(2, int((n-1)**0.5)+1, 1):
+    #     if ditA[key]:
+    #         for i in range(2*key-1, n, 1):
+    #             if i % key == 0:
+    #                 ditA[i] = False
+    # return sum(ditA.values())
+    # 上面算法效率较低
+
+    if n < 3:
+        return 0
+    primes = [True]*n  # 默认所有小于n的都是素数
+    primes[:2] = [False, False]  # primes[0],primes[1]就是数字0和1，都不是素数
+    for base in xrange(2, int((n-1)**0.5)+1):  # 当你要画圈的素数的平方大于 n 时，那么后面没有划去的数都是素数，就不用继续判了
+        if primes[base]:
+            primes[pow(base, 2)::base] = [False] * len(primes[pow(base, 2)::base])  # base的倍数都不是素数.巧用分片赋值操作。
+    return sum(primes)  # 素数是True，是1，非素数是0，求和即可
+
+
 if __name__ == "__main__":
     # [4,-1,2,1] has the largest sum = 6.
     # [-2,1,-3,4,-1,2,1,-5,4] 187
     # [59, 26, -53, 58, 97, -93, -23, 84]
-    print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
+    # print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
+    print(countPrimes(120))  # 30
 
 
 
