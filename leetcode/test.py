@@ -167,6 +167,25 @@ def countPrimes(n):
     return sum(primes)  # 素数是True，是1，非素数是0，求和即可
 
 
+def isUgly(num):
+    """
+    判断一个数能否被2、3、5整除
+    :type num: int
+    :rtype: bool
+    """
+    if num <=0:
+        return False
+    if num == 1:
+        return True
+    if num % 2 == 0:
+        return isUgly(num/2)
+    if num % 3 == 0:
+        return isUgly(num/3)
+    if num % 5 == 0:
+        return isUgly(num/5)
+    return False
+
+
 if __name__ == "__main__":
     # [4,-1,2,1] has the largest sum = 6.
     # [-2,1,-3,4,-1,2,1,-5,4] 187

@@ -26,9 +26,50 @@ def hammingWeight(n):
     return str.count('1')
 
 
+def isIsomorphic(s, t):
+    """
+    :type s: str
+    :type t: str
+    :rty
+    """
+    s1 = {}
+    t1 = {}
+    for i in range(0, len(s), 1):
+        if s[i] not in s1.keys():
+            s1[s[i]] = [i]
+        else:
+            s1[s[i]].append(i)
+        if t[i] not in t1.keys():
+            t1[t[i]] = [i]
+        else:
+            t1[t[i]].append(i)
+    # print(sorted(s1.values()), sorted(t1.values()))
+    if sorted(s1.values()) != sorted(t1.values()):
+        return False
+    else:
+        return True
+
+def containsNearbyDuplicate(n):
+    if n <=0:
+        return 0
+    num = bin(n)
+    ret = num[3:]
+    ret = ret.strip('0')
+    print(num, ret)
+    if not ret:
+        return True
+    return False
+    return num[3:]
+
+
+
+
 
 if __name__ == "__main__":
-    print((10))  # 6个
+    # print(trailingZeroes(25))  # 6个=5个5+1个25
     # print('15511210043330985984000000'.count('0'))
+
+    # print(containsNearbyDuplicate(0))
+    print(isUgly(14))
 
 

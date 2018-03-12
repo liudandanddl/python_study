@@ -60,6 +60,15 @@ def deleteDuplicates(head):
     return head
 
 
+def deleteNode(node):
+    """
+    删除node节点
+    :type node: ListNode
+    :rtype: void Do not return anything, modify node in-place instead.
+    """
+    node.val = node.next.val
+    node.next = node.next.next
+
 
 def mergeTwoLists(l1, l2):
     """
@@ -113,6 +122,76 @@ def removeElements(head, val):
     return q
 
 
+def reverseList(head):
+    """
+    反转链表
+    :type head: Node
+    :rtype: Node
+    """
+    if not head:
+        return head
+    val_list = []
+    p = head
+    while p:
+        val_list.append(p.val)
+        p = p.next
+    val_list.reverse()
+    resNode = Node(val_list[0])
+    q = resNode
+    for val in val_list[1:]:
+        temp = Node(val)
+        q.next = temp
+        q = q.next
+    return resNode
+
+
+def reverseList2(head):
+    """
+    反转链表,直接在原链表上操作,通过迭代将节点重组，前面的节点转移到重组链表的后面。实际上就是头结点倒插操作。
+    :type head: Node
+    :rtype: Node
+    """
+    resNode = None
+    while head:
+        q = head
+        head = head.next
+        q.next = resNode
+        resNode = q
+    return resNode
+
+
+def isPalindrome(head):
+    """
+    判断一个单向链表是不是回文串。时间负责度O(n) ，空间O(1)
+    :type head: ListNode
+    :rtype: bool
+    """
+    if not head or not head.next:
+        return True
+    # 查找单向列表的中间节点,mid指向单向链表的中间节点
+    mid = q = head
+    while q.next and q.next.next:
+        mid = mid.next
+        q = q.next.next
+    mid = mid.next  # mid指向链表的后半段
+    # 将mid所指向的后半段的单向链表原地反转
+    mid_rever = None
+    while mid:
+        p = mid
+        mid = mid.next
+        p.next = mid_rever
+        mid_rever = p
+    # 将head的前半段(减去mid的)和mid_rever比较
+    while mid_rever:
+        if mid_rever.val != head.val:
+            return False
+        else:
+            mid_rever = mid_rever.next
+            head = head.next
+    return True
+
+
+
 if __name__ == "__main__":
     # head = Node(1)
     # l = [1, 1, 2, 3, 3]
@@ -130,7 +209,7 @@ if __name__ == "__main__":
     # head = mergeTwoLists(head1, head2)
     # print_node(head)
     head1 = Node(6)
-    for temp in [2,6,3,4,5,6]:
+    for temp in [2,1,4]:
         head1 = append_node(head1, temp)
-    head = removeElements(head1, 6)
+    head = reverseList2(head1)
     print_node(head)
