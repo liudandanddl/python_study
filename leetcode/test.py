@@ -84,6 +84,7 @@ def isValid(s):
 
 def maxSubArray(nums):
     """
+    动态规划问题
     求数组的最大子串和。常规办法：for循环两边，第一遍遍历子串头，在内部遍历子串尾，算出所有子串和。
     eg:[59, 26, -53, 58, 97, -93, -23, 84] res=187, [59, 26, -53, 58, 97]
     [-2,1,-3,4,-1,2,1,-5,4]  res=6, [4, -1, 2, 1]
@@ -184,6 +185,42 @@ def isUgly(num):
     if num % 5 == 0:
         return isUgly(num/5)
     return False
+
+
+def moveZeroes(nums):
+    """
+    将数组的所有0移到后面。必须在不复制数组的情况下完成此操作。最小化操作总数
+    :type nums: List[int]
+    :rtype: void Do not return anything, modify nums in-place instead.
+    given nums = [0, 1, 0, 3, 12], after calling your function, nums should be [1, 3, 12, 0, 0]
+    """
+    a = len(nums)
+    for i in range(0, a, 1):
+        temp = nums[i]
+        if temp == 0:
+            nums.append(0)
+            nums.remove(temp)  # 移除列表中某个值的第一个匹配项，修改列表无返回值。
+
+
+def removeDuplicates(nums):
+    """
+    不增加额外空间，原地删除一个有序数组的重复元素，返回新数组的个数。
+    Given nums = [1,1,2]，return length = 2, with the first two elements of nums being 1 and 2 respectively。
+    It doesn't matter what you leave beyond the new length.
+    :type nums: List[int]
+    :rtype: int
+    """
+    if nums == []:
+        return 0
+    j = 0
+    for i in range(1, len(nums), 1):
+        if nums[j] != nums[i]:
+            nums[j+1] = nums[i]
+            j = j+1
+    # for i in nums[j+1:]:
+    #     nums.remove(i)    多余的重复元素在原地删除
+    print(nums)
+    return j+1
 
 
 if __name__ == "__main__":
