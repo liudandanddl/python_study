@@ -32,7 +32,6 @@ def add_tree(val_list):
     return tree
 
 
-
 def beforeTree(root):  # 先跟遍历
     res = []
     if root is None:
@@ -110,7 +109,7 @@ def isSymmetricSub(self, p, q):
     return (p.val == q.val) and self.isS(p.left, q.right) and self.isS(p.right, q.left)
 def isSymmetric(root):
     """
-    判断一棵树是否是镜像树
+    判断一棵树是否是镜像树：左子树和右子树的值相比较。
     :type root: TreeNode
     :rtype: bool
     """
@@ -143,7 +142,7 @@ def maxDepth(root):
     :type root: TreeNode
     :rtype: int
     """
-    if root == None:
+    if root is None:
         return 0
     depth_l = maxDepth(root.left) + 1
     depth_r = maxDepth(root.right) + 1
@@ -163,6 +162,36 @@ def maxDepth2(root):
             if temp.right:
                 q.append(temp.right)
     return depth
+def minDepth(root):
+    """
+    求二叉树的最小深度：分3种情况：（1）树为空，则为0；
+    （2）根节点如果只存在左子树或者只存在右子树，则返回值应为左子树或者右子树的最小深度+1;
+    （3）如果根节点的左子树和右子树都存在，则返回值为左右子树的最小深度的较小值+1.
+    :type root: TreeNode
+    :rtype: int
+    """
+    if root is None:
+        return 0
+    if root.left is None and root.right is not None:
+        return minDepth(root.right)+1
+    if root.left is not None and root.right is None:
+        return minDepth(root.left)+1
+    return min(minDepth(root.right), minDepth(root.left))+1
+
+def isBalanced(root):
+    """
+    判断一个树是否是平衡二叉树
+    平衡二叉树：是二叉树的任意节点的两颗子树之间的高度差小于等于1.
+    递归求解每个节点的左右子树的高度差，如果有大于1的，则return FALSE，如果高度差小于等于1，在继续递归求解。
+    :type root: TreeNode
+    :rtype: bool
+    """
+    if root is None:
+        return True
+    if abs(maxDepth(root.left)-maxDepth(root.right)) <= 1:
+        return isBalanced(root.left) and isBalanced(root.right)
+    else:
+        return False
 '''
 二叉树如下：
        D
@@ -170,20 +199,37 @@ def maxDepth2(root):
 A    C   NULL  G
               F  NULL
 '''
+def hasPathSum(root, sum):  # 深度优先遍历
+    """
+    给定一个二叉树和一个总和，确定树是否有根到叶路径的所有值等于给定的和。
+    root-to-leaf路径，必须是从根节点一直到叶子节点，中间取一段是不行的
+    节点值是可以为负的。
+    空的二叉树，不存在和为0的路径。
+    :type root: TreeNode
+    :type sum: int
+    :rtype: bool
+    """
+    if root is None:
+        return False
+    else:
+        if sum == root.val and root.left is None and root.right is None:
+            return True
+        else:
+            return hasPathSum(root.left, sum-root.val) or hasPathSum(root.right, sum-root.val)
 
 
 if __name__ == "__main__":
     # l = ['D', 'B', 'E', 'A', 'C', None, 'G', None,None,None,None,None,None,'F']
     # root = add_tree(l)
     root = TreeNode('D',TreeNode('B',TreeNode('A'),TreeNode('C')),TreeNode('E',right=TreeNode('G',left=TreeNode('F'))))
-    # print('先根遍历：res=DBACEGF')
+    print('先根遍历：res=DBACEGF')
     # print(beforeTree(root))
     # print('中根遍历：res=ABCDEFG')
     # midTree(root)
     # print('后根遍历：res=ACBFGED')
     # afterTree(root)
 
-    print('广度优先遍历：res=DBEACGF')
-    print(levelTree(root))  # ['D', 'B', 'E', 'A', 'C', 'G', 'F']
+    # print('广度优先遍历：res=DBEACGF')
+    # print(levelTree(root))  # ['D', 'B', 'E', 'A', 'C', 'G', 'F']
     # print(levelOrderBottom(root))  # [['D'], ['B', 'E'], ['A', 'C', 'G'], ['F']]
-
+    print(hasPathSum(root, 22))
