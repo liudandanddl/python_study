@@ -62,6 +62,38 @@ def containsNearbyDuplicate(n):
     return num[3:]
 
 
+def moveZeroes(nums):
+    a = len(nums)
+    for i in range(0, a, 1):
+        temp = nums[i]
+        if temp == 0:
+            nums.append(0)
+            nums.remove(temp)
+    print(nums)
+
+
+def merge(nums1, m, nums2, n):
+    """
+    :type nums1: List[int]
+    :type m: int
+    :type nums2: List[int]
+    :type n: int
+    :rtype: void Do not return anything, modify nums1 in-place instead.
+    """
+    if n == 0:
+        return
+    if m == 0:
+        for i in range(0, n, 1):
+            nums1[i] = nums2[i]
+    else:
+        print(nums1[:m], nums2[:n])
+        for i in range(m, m+n, 1):
+            nums1[m+i-1] = nums2[i-m]
+        for i in nums1[m+n:]:
+            nums1.remove(i)
+        nums1.sort()
+
+    print(nums1)
 
 
 
@@ -70,6 +102,6 @@ if __name__ == "__main__":
     # print('15511210043330985984000000'.count('0'))
 
     # print(containsNearbyDuplicate(0))
-    print(isUgly(14))
+    print(merge([1,2,3,0,0,0],3,[2,5,6],3))
 
 

@@ -99,7 +99,7 @@ def maxSubArray(nums):
     res_far = [nums[0]]  # 最终结果的子序列
     for temp in nums[1:]:
         print(temp, max_far, max_end, res_far, res_end)
-        if max_end < 0:
+        if max_end < 0:  # 累加失败，重新开始
             max_end = temp
             res_end = [temp]
         else:
