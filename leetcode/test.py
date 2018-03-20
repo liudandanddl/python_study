@@ -223,6 +223,28 @@ def removeDuplicates(nums):
     return j+1
 
 
+def isToeplitzMatrix(matrix):
+    '''
+    从左上角到右下角的每个对角线上的元素是否相等
+    对角线遍历，注意对角线的性质：当前元素为matrix[i][j],下一元素为matrix[i+1][j+1]
+    Input: matrix = [[1,2,3,4],[5,1,2,3],[9,5,1,2]]
+    Output: True
+    Explanation:
+    1234
+    5123
+    9512
+    In the above grid, the diagonals are "[9]", "[5, 5]", "[1, 1, 1]", "[2, 2, 2]", "[3, 3]", "[4]",
+    and in each diagonal all elements are the same, so the answer is True.
+    '''
+    n = len(matrix)
+    m = len(matrix[0])
+    for i in range(0, n-1, 1):
+        for j in range(0, m-1):
+            if matrix[i][j] != matrix[i+1][j+1]:
+                return False
+    return True
+
+
 if __name__ == "__main__":
     # [4,-1,2,1] has the largest sum = 6.
     # [-2,1,-3,4,-1,2,1,-5,4] 187

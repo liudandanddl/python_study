@@ -218,6 +218,26 @@ def hasPathSum(root, sum):  # 深度优先遍历
             return hasPathSum(root.left, sum-root.val) or hasPathSum(root.right, sum-root.val)
 
 
+def mergeTrees(t1, t2):
+    """
+    合并两个二叉树，将相关节点值相加。
+    :type t1: TreeNode
+    :type t2: TreeNode
+    :rtype: TreeNode
+    """
+    if t1 is None and t2 is None:
+        return
+    elif t1 is None:
+        return t2
+    elif t2 is None:
+        return t1
+    else:
+        t1.val+=t2.val
+    t1.right = mergeTrees(t1.right, t2.right)
+    t1.left = mergeTrees(t1.left, t2.left)
+    return t1
+
+
 if __name__ == "__main__":
     # l = ['D', 'B', 'E', 'A', 'C', None, 'G', None,None,None,None,None,None,'F']
     # root = add_tree(l)
