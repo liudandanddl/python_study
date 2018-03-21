@@ -191,6 +191,83 @@ def isPalindrome(head):
     return True
 
 
+def hasCycle(head):
+    """
+    判断链表是否有循环,如果有循环，返回循环开始处，没有返回None。
+    如果有循环，一定在链表的中间有两个节点相等。
+    使用一个慢指针，一个快指针，如果链表成环，则慢指针一定会被快指针追上。如果不成环，则快指针会先走到None节点退出循环。
+    当两个指针相遇的时候，快指针可能在环内已经走了n圈，我们设相遇点为c，此时fp和sp都指向了c，接下来令fp继续指向c结点，sp指向链表头结点head，
+    此时最大的不同是fp的步数变成为每次走一步，令fp和sp同时走，每次一步，那么它们再次相遇的时候即为环的入口结点
+    :type head: ListNode
+    :rtype: bool
+    """
+    fast = head
+    slow = head
+    while fast is not None and slow is not None and fast.next is not None:
+        fast = fast.next.next
+        slow = slow.next
+        if fast == slow:  # 条件成立，则表示链表有循环
+            slow = head
+            while slow != fast:
+                slow = slow.next
+                fast = fast.next
+            return slow
+    return
+
+
+def getIntersectionNode(headA, headB):
+    """
+    查找两个单链表交集的起始点.eg:
+    headA=a1->a2->c1->c2->c3
+    headB=b1->b2->b3->c1->c3->c3  则应该返回c1
+    解法：A链表走完走B的；B链表走完走A的。
+    a1->a2->c1->c2->c3->b1->b2->b3->c1->c3->c3
+    b1->b2->b3->c1->c3->c3->a1->a2->c1->c2->c3
+    这样A和B两个链表长度相同，如果走完之后都等于None，则两个链表没有交集，否则在交集出比相等
+    :type head1, head1: ListNode
+    :rtype: ListNode
+    """
+    a = headA
+    b = headB
+    while a and b:  # 两个链表都走完了，没有相等的节点，最后返回None
+        if a == b:
+            return a
+        a = a.next
+        b = b.next
+        if not a and b:  # A链表走完，但B链表没走完，则接着走B的
+            a = headB
+        if not b and a:  # B链表走完，单A链表没走完，则接着走A的
+            b = headA
+    return
+
+
+def rotateRight(head, k):
+    '''
+    给定一个列表，将列表旋转到右边的k个位置，其中k是非负的
+    Given 1->2->3->4->5->NULL and k = 2,
+    return 4->5->1->2->3->NULL.
+    解法：将链表形成一个环，在适当的位置断开连接。head指向结果链表的头部，p指向尾部。
+    '''
+    if head is None:
+        return None
+    if k == 0:
+        return head
+    p = head  # 用指针p来操作链表
+    length = 1
+    while p.next:  # 得到list的长度
+        length += 1
+        p = p.next
+    # 循环结束后，p指向链表的最后一个节点
+    p.next = head  # 形成一个环
+    step = length-(k % length)  # k的数值可能大于链表长度
+    while step > 0:   # 到新head的位置
+        step -= 1
+        p = p.next
+    # 循环结束后，p指向返回值的尾部节点，即p.val=3
+    head = p.next   # 将head指向返回值的头部节点
+    p.next = None   # 断开环链表。
+    return head
+
 
 if __name__ == "__main__":
     # head = Node(1)
@@ -208,8 +285,8 @@ if __name__ == "__main__":
     #     head2 = append_node(head2, temp)
     # head = mergeTwoLists(head1, head2)
     # print_node(head)
-    head1 = Node(6)
-    for temp in [2,1,4]:
+    head1 = Node(1)
+    for temp in [2,3,4,5]:
         head1 = append_node(head1, temp)
-    head = reverseList2(head1)
+    head = rotateRight(head1, 2)
     print_node(head)
