@@ -2,6 +2,7 @@
 # coding=utf-8
 from collections import Counter
 import re
+import operator
 
 __author__ = 'ldd'
 
@@ -49,6 +50,7 @@ def isIsomorphic(s, t):
     else:
         return True
 
+
 def containsNearbyDuplicate(n):
     if n <=0:
         return 0
@@ -62,23 +64,9 @@ def containsNearbyDuplicate(n):
     return num[3:]
 
 
-def moveZeroes(nums):
-    a = len(nums)
-    for i in range(0, a, 1):
-        temp = nums[i]
-        if temp == 0:
-            nums.append(0)
-            nums.remove(temp)
-    print(nums)
-
-
-
-
 
 if __name__ == "__main__":
-    res = range(1, 16, 1)
-    res = map(str, res)
-    res[2::3] = ['Fizz']*len(res[2::3])
-    res[4::5] = ['Buzz']*len(res[4::5])
-    res[14::15] = ['FizzBuzz']*len(res[14::15])
-    print(res)
+    print(pow(4, 15))
+    print(pow(4,15) > 2147483648)
+    print(1073741824/8)
+

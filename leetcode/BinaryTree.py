@@ -238,11 +238,36 @@ def mergeTrees(t1, t2):
     return t1
 
 
+def invertTree(root):
+    """
+    反转二叉树
+    :type root: TreeNode
+    :rtype: TreeNode
+    """
+    if root is None:
+        return
+    # temp = root.left
+    # root.left = invertTree(root.right)
+    # root.right = invertTree(temp)
+    # return root
+
+    q = [root]
+    while len(q) != 0:
+        temp = q.pop(0)
+        temp.left, temp.right = temp.right, temp.left
+        if temp.left:
+            q.append(temp.left)
+        if temp.right:
+            q.append(temp.right)
+
+    return root
+
+
 if __name__ == "__main__":
     # l = ['D', 'B', 'E', 'A', 'C', None, 'G', None,None,None,None,None,None,'F']
     # root = add_tree(l)
-    root = TreeNode('D',TreeNode('B',TreeNode('A'),TreeNode('C')),TreeNode('E',right=TreeNode('G',left=TreeNode('F'))))
-    print('先根遍历：res=DBACEGF')
+    # root = TreeNode('D',TreeNode('B',TreeNode('A'),TreeNode('C')),TreeNode('E',right=TreeNode('G',left=TreeNode('F'))))
+    # print('先根遍历：res=DBACEGF')
     # print(beforeTree(root))
     # print('中根遍历：res=ABCDEFG')
     # midTree(root)
@@ -252,4 +277,12 @@ if __name__ == "__main__":
     # print('广度优先遍历：res=DBEACGF')
     # print(levelTree(root))  # ['D', 'B', 'E', 'A', 'C', 'G', 'F']
     # print(levelOrderBottom(root))  # [['D'], ['B', 'E'], ['A', 'C', 'G'], ['F']]
-    print(hasPathSum(root, 22))
+    # print(hasPathSum(root, 22))
+
+    root = TreeNode('4',left=TreeNode('2',left=TreeNode('1'),right=TreeNode('3')),
+                        right=TreeNode('7',left=TreeNode('6',right=TreeNode('9'))))
+    print("广度优先遍历：root=4273169")
+    print(levelTree(root))
+    res = invertTree(root)
+    print("广度优先遍历：res=4729631")
+    print(levelTree(res))

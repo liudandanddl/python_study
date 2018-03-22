@@ -245,6 +245,16 @@ def isToeplitzMatrix(matrix):
     return True
 
 
+def rotate(nums, k):
+    """
+    :type nums: List[int]
+    :type k: int
+    :rtype: void Do not return anything, modify nums in-place instead.
+    原地反转一个数组，For example, k = 3, the array [1,2,3,4,5,6,7] is rotated to [5,6,7,1,2,3,4]
+    """
+    nums[:k], nums[k:] = nums[len(nums)-k:], nums[:len(nums)-k]
+
+
 if __name__ == "__main__":
     # [4,-1,2,1] has the largest sum = 6.
     # [-2,1,-3,4,-1,2,1,-5,4] 187
