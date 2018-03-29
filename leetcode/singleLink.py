@@ -269,6 +269,38 @@ def rotateRight(head, k):
     return head
 
 
+def addTwoNumbers(l1, l2):
+    """
+    输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
+    输出：7 -> 0 -> 8
+    原因：342 + 465 = 807
+    :type l1: ListNode
+    :type l2: ListNode
+    :rtype: ListNode
+    """
+    nums1 = []
+    nums2 = []
+    while l1:
+        nums1.append(str(l1.val))
+        l1 = l1.next
+    while l2:
+        nums2.append(str(l2.val))
+        l2 = l2.next
+    nums1 = nums1[::-1]
+    nums2 = nums2[::-1]
+    num1 = ''.join(nums1)
+    num2 = ''.join(nums2)
+    res_num = str(int(num1)+int(num2))
+    print(num1, num2, res_num)
+    res_node = None
+    for i in res_num:
+        temp = Node(int(i))
+        temp.next = res_node
+        res_node = temp
+    return res_node
+
+
+
 if __name__ == "__main__":
     # head = Node(1)
     # l = [1, 1, 2, 3, 3]
@@ -285,8 +317,18 @@ if __name__ == "__main__":
     #     head2 = append_node(head2, temp)
     # head = mergeTwoLists(head1, head2)
     # print_node(head)
-    head1 = Node(1)
-    for temp in [2,3,4,5]:
-        head1 = append_node(head1, temp)
-    head = rotateRight(head1, 2)
-    print_node(head)
+    # head1 = Node(1)
+    # for temp in [2,3,4,5]:
+    #     head1 = append_node(head1, temp)
+    # head = rotateRight(head1, 2)
+    # print_node(head)
+    l1 = Node(2)
+    for temp in [4,3]:
+        l1 = append_node(l1, temp)
+    l2 = Node(5)
+    for temp in [6,4]:
+        l2 = append_node(l2, temp)
+    # print_node(l1)
+    # print_node(l2)
+    l3 = addTwoNumbers(l1,l2)
+    print_node(l3)

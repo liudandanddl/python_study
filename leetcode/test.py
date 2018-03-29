@@ -255,6 +255,43 @@ def rotate(nums, k):
     nums[:k], nums[k:] = nums[len(nums)-k:], nums[:len(nums)-k]
 
 
+def threeSum(nums):
+    '''
+    先升序排序，然后用第一重for循环确定第一个数字。然后在第二重循环里，第二、第三个数字分别从两端往中间扫。时间复杂度：O(n2)
+    如果三个数的sum等于0，得到一组解。如果三个数的sum小于0，说明需要增大，所以第二个数往右移。如果三个数的sum大于0，说明需要减小，所以第三个数往左移。
+    :type nums: List[int]
+    :rtype: List[List[int]]
+    '''
+    res = []
+    length = len(nums)
+    if length < 3:
+        return res
+    nums.sort()
+    for i in range(length):
+        if nums[i] > 0:  # 第一个数大于0
+            break
+        if i > 0 and nums[i] == nums[i-1]:  # 重复元素不重复计算
+            continue
+        begin = i+1
+        end = length-1
+        while begin < end:
+            sum = nums[i]+nums[begin]+nums[end]
+            if sum == 0:
+                tmp = [nums[i], nums[begin], nums[end]]
+                res.append(tmp)
+                begin += 1
+                end -= 1
+                while begin < end and nums[begin] == nums[begin-1]:
+                    begin += 1
+                while begin < end and nums[end] == nums[end+1]:
+                    end -= 1
+            elif sum > 0:
+                end -= 1
+            else:
+                begin += 1
+    return res
+
+
 if __name__ == "__main__":
     # [4,-1,2,1] has the largest sum = 6.
     # [-2,1,-3,4,-1,2,1,-5,4] 187

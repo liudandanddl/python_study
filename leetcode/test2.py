@@ -51,22 +51,21 @@ def isIsomorphic(s, t):
         return True
 
 
-def containsNearbyDuplicate(n):
-    if n <=0:
-        return 0
-    num = bin(n)
-    ret = num[3:]
-    ret = ret.strip('0')
-    print(num, ret)
-    if not ret:
-        return True
-    return False
-    return num[3:]
+def longestPalindrome(s):
+    """
+    :type s: str
+    :rtype: str
+    """
+    res = ''
+    for start in range(0, len(s)):
+        for end in range(len(s), 0, -1):
+            print(start, end, s[start:end], s[start:end][::-1])
+            if s[start:end] == s[start:end:][::-1] and end - start > len(res):
+                res = s[start:end]
+    return res
+
 
 
 
 if __name__ == "__main__":
-    print(pow(4, 15))
-    print(pow(4,15) > 2147483648)
-    print(1073741824/8)
-
+    print(threeSum([-1, 0, 1, 2, -1, -4, -4, 8]))

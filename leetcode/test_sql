@@ -1,6 +1,6 @@
 
 SELECT FirstName,LastName,City,State from Person, Address WHERE Address.PersonId = Person.PersonId;
-SELECT FirstName,LastName,City,State from Person left join Address on Person.PersonId = .PersonId;
+SELECT FirstName,LastName,City,State from Person left join Address on Person.PersonId = Address.PersonId;
 
 select Salary as SecondHighestSalary from Employee
 WHERE Salary < (select MAX(Salary) from Employee) ORDER by Salary DESC limit 1;
