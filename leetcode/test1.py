@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # coding=utf-8
-from collections import Counter
-
 __author__ = 'ldd'
 
 
@@ -34,7 +32,3 @@ def findAnagrams(s, p):
     if sdic == pdic:
         res.append(i)
     return res
-
-
-if __name__ == "__main__":
-    print(findAnagrams(s='abaacbabc', p='abc'))
