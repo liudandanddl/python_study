@@ -79,35 +79,20 @@ def minWindow(s, t):
             end += 1
     return res
 
-def maxProduct(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    max_ji = 1
-    now_ji = 1
-    n = 0
-    while n < len(nums):
-        if nums[n] > 0:
-            now_ji *= nums[n]
-            n += 1
-        else:
-            if n+1 < len(nums):
-                if nums[n+1] < 0:
-                    now_ji *= nums[n]*nums[n+1]
-                    n += 2
-                else:
-                    now_ji = nums[n+1]
-                    n += 2
-            else:
-                if now_ji:
-                    pass
 
-        max_ji = max_ji if max_ji > now_ji else now_ji
-    return max_ji
+class testA():
+    def p(self):
+        print('A')
 
+class testB():
+    def p(self):
+        print('B')
 
+class testC(testB, testA):
+    def p(self):
+        pass
 
 
 if __name__ == "__main__":
-    print(maxProduct([[2,3,-2,4]]))
+    c = testC()
+    c.p()

@@ -57,3 +57,28 @@ def findMinArrowShots(points):
             last_end = p[1]
             res += 1
     return res
+
+
+def canPlaceFlowers(flowerbed, n):
+    '''
+    在保证数组中相邻的元素不同时为1时，判断是否能在原数组中添加n个1，返回false/true
+    思路：先考虑前两个元素是否为零，再考虑中间的位置是否同时有三个相邻元素为零，
+    最后考虑最后两个元素是否为零。当确定能添加一个“1”时，将原数组的相应位置置1，便于后面的判断。
+    '''
+    if n < 1:
+        return True
+    if n == 1 and sum(flowerbed) == 0:
+        return True
+    if len(flowerbed) < 2:
+        return False
+    if flowerbed[0]+flowerbed[1] == 0:
+        n -= 1
+        flowerbed[0] = 1
+    for i in range(1, len(flowerbed)-2, 1):
+        if flowerbed[i-1]+flowerbed[i]+flowerbed[i+1] == 0:
+            n -= 1
+            flowerbed[i] = 1
+    if flowerbed[-1]+flowerbed[-2] == 0:
+        n -= 1
+        flowerbed[n] = 1
+    return n < 1
